@@ -6,12 +6,12 @@ namespace LibraryTerminal
 {
     class Book : Item
     {
-        public string Author { get; set; }
+        
         public int PageCount { get; set; }
 
-        public Book(string Title, int ReleaseYear, string Author, int PageCount) : base(Title, ReleaseYear)
+        public Book(string Title, string Author, int ReleaseYear, int PageCount) : base(Title, Author, ReleaseYear)
         {
-            this.Author = Author;
+           
             this.PageCount = PageCount;
         }
 
@@ -19,7 +19,6 @@ namespace LibraryTerminal
         {
             base.PrintInfo();
             Console.WriteLine($"Type: Book");
-            Console.WriteLine($"Author: {Author}");
             Console.WriteLine($"# of Pages: {PageCount}");
         }
     }
