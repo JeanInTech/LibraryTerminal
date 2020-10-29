@@ -11,6 +11,7 @@ namespace LibraryTerminal
         public ItemStatus ItemStatus { get; set; }
         public DateTime DueDate { get; set; }
         public int ReleaseYear { get; set; }
+      
         public Item() { }
         public Item(string Title, int ReleaseYear)
         {
@@ -22,7 +23,6 @@ namespace LibraryTerminal
         public virtual void PrintInfo()
         {
             Console.WriteLine($"Title: {Title}");
-            Console.WriteLine($"Status: {ItemStatus}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             if (ItemStatus.Equals("CheckedOut"))
             {
@@ -35,3 +35,4 @@ namespace LibraryTerminal
         }
     }
 }
+
