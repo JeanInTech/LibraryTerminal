@@ -17,19 +17,10 @@ namespace LibraryTerminal
             this.ItemStatus = ItemStatus;
             this.DueDate = DueDate;
         }
-
         public virtual void PrintInfo()
         {
             Console.WriteLine($"Title: {Title}");
             Console.WriteLine($"Status: {ItemStatus}");
-            if (ItemStatus.Equals("CheckedOut"))
-            {
-                Console.WriteLine($"Return Date: {DueDate}");
-            }
-            else
-            {
-                Console.WriteLine($"Status: {ItemStatus}");
-            }
         }
     }
 }
