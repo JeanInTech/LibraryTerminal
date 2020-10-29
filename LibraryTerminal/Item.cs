@@ -11,16 +11,22 @@ namespace LibraryTerminal
         public DateTime DueDate { get; set; }
 
         public Item() { }
-        public Item(string Title, ItemStatus ItemStatus, DateTime DueDate)
+        public Item(string Title)
         {
             this.Title = Title;
-            this.ItemStatus = ItemStatus;
-            this.DueDate = DueDate;
+            this.ItemStatus = ItemStatus.OnShelf;
+            this.DueDate = DateTime.Now;
         }
         public virtual void PrintInfo()
         {
             Console.WriteLine($"Title: {Title}");
-            Console.WriteLine($"Status: {ItemStatus}");
+            if (ItemStatus.Equals("CheckedOut"))
+            {
+                Console.WriteLine($"Return Date: {DueDate}");
+            }
+            else
+            {
+                Console.WriteLine($"Status: {ItemStatus}");
+            }
         }
-    }
 }
