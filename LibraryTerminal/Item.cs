@@ -19,11 +19,9 @@ namespace LibraryTerminal
             this.DueDate = DateTime.Now;
             this.ReleaseYear = ReleaseYear;
         }
-
         public virtual void PrintInfo()
         {
             Console.WriteLine($"Title: {Title}");
-            Console.WriteLine($"Status: {ItemStatus}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             if (ItemStatus.Equals("CheckedOut"))
             {
@@ -34,5 +32,4 @@ namespace LibraryTerminal
                 Console.WriteLine($"Status: {ItemStatus}");
             }
         }
-    }
 }
