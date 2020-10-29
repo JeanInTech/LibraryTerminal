@@ -8,14 +8,16 @@ namespace LibraryTerminal
     {
         
         public string Title { get; set; }
+        public string Author { get; set; }
         public ItemStatus ItemStatus { get; set; }
         public DateTime DueDate { get; set; }
         public int ReleaseYear { get; set; }
       
         public Item() { }
-        public Item(string Title, int ReleaseYear)
+        public Item(string Title, string Author, int ReleaseYear)
         {
             this.Title = Title;
+            this.Author = Author;
             this.ItemStatus = ItemStatus.OnShelf;
             this.DueDate = DateTime.Now;
             this.ReleaseYear = ReleaseYear;
@@ -23,6 +25,7 @@ namespace LibraryTerminal
         public virtual void PrintInfo()
         {
             Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"Author: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             if (ItemStatus.Equals("CheckedOut"))
             {

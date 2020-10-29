@@ -8,16 +8,29 @@ namespace LibraryTerminal
 {
     class CD : Item
     {
-        public string Artist { get; set; }
 
+        public string Tracks { get; set; }
 
-        public CD(string Title, ItemStatus ItemStatus, DateTime DueDate, int ReleaseYear, string Artist)
-            : base(Title, ItemStatus, DueDate, ReleaseYear)
+        public CD(string Title, string Author, int ReleaseYear, string Tracks) : base(Title, Author, ReleaseYear)
         {
-            
+            this.Tracks = Tracks;
+        }
+        public override void PrintInfo()
+        {
+            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"Artist: {Author}");
+            Console.WriteLine($"Year Released: {ReleaseYear}");
+            Console.WriteLine($"Track List: {Tracks}");
+            if (ItemStatus.Equals("CheckedOut"))
+            {
+                Console.WriteLine($"Return Date: {DueDate}");
+            }
+            else
+            {
+                Console.WriteLine($"Status: {ItemStatus}");
+            }
         }
 
-        
-        
+
     }
 }

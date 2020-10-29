@@ -7,6 +7,10 @@ namespace LibraryTerminal
     {
         static void Main(string[] args)
         {
+
+            //Library L = new Library();
+            //L.PrintItems();
+
             bool userContinue = true;
             Console.WriteLine("Welcome to the Library!");
             while (userContinue)
