@@ -11,11 +11,11 @@ namespace LibraryTerminal
         public DateTime DueDate { get; set; }
 
         public Item() { }
-        public Item(string Title, ItemStatus ItemStatus, DateTime DueDate)
+        public Item(string Title)
         {
             this.Title = Title;
-            this.ItemStatus = ItemStatus;
-            this.DueDate = DueDate;
+            this.ItemStatus = ItemStatus.OnShelf;
+            this.DueDate = DateTime.Now;
         }
 
         public virtual void PrintInfo()
