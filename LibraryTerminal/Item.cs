@@ -6,11 +6,12 @@ namespace LibraryTerminal
 {
     abstract class Item
     {
+        
         public string Title { get; set; }
         public ItemStatus ItemStatus { get; set; }
         public DateTime DueDate { get; set; }
         public int ReleaseYear { get; set; }
-
+      
         public Item() { }
         public Item(string Title, int ReleaseYear)
         {
@@ -32,4 +33,6 @@ namespace LibraryTerminal
                 Console.WriteLine($"Status: {ItemStatus}");
             }
         }
+    }
 }
+
