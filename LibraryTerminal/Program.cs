@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace LibraryTerminal
 {
@@ -105,6 +106,19 @@ namespace LibraryTerminal
                     CnslFormatter.PauseByAnyKey();
                 }
             }
+            Console.WriteLine("Saving Library Content!");
+            
+            File.WriteAllText("../../../SavedItems.txt", string.Empty); // Clear the File
+            StreamWriter writer = new StreamWriter("../../../SavedItems.txt"); // Should generate new file if deleted
+            List<Item> itemsSaved = L.Catalog;
+            foreach (Item item in itemsSaved)
+            {
+                string itemEntry = GenerateEntry(item);
+                writer.WriteLine(itemEntry);
+            }
+            writer.Close();
+
+
             Console.WriteLine("Goodbye!");
         }
         public static void LibraryMenu()
@@ -154,6 +168,35 @@ namespace LibraryTerminal
                 return new Magazine(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
             }
             return null;
+        }
+
+        public static string GenerateEntry(Item item)
+        {
+            string itemEntry = "";
+            string itemType = item.GetType().Name;
+
+            itemEntry += itemType + "|";
+            itemEntry += item.Title + "|";
+            itemEntry += item.Author + "|";
+            itemEntry += item.ReleaseYear + "|";
+
+            if (itemType.Equals("Book"))
+            {
+                itemEntry += ((Book)item).PageCount;
+            }
+            else if (itemType.Equals("CD"))
+            {
+                itemEntry += ((CD)item).Tracks;
+            }
+            else if (itemType.Equals("DVD"))
+            {
+                itemEntry += ((DVD)item).RunTime;
+            }
+            else if (itemType.Equals("Magazine"))
+            {
+                itemEntry += ((Magazine)item).PublishMonth;
+            }
+            return itemEntry;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿Book|How Much of These Hills Is Gold|C Pam Zhang|2020|368
+Book|How Much of These Hills Is Gold|C Pam Zhang|2020|368
 Book|Jade City|Fonda Lee|2017|560
 Book|The Poppy War|R F Kuang|2018|544
 CD|1|The Beatles|2000|27
@@ -7,6 +7,8 @@ CD|21|Adele|2011|11
 DVD|Finding Nemo|Andrew Stanton (Pixar)|2003|100
 DVD|Spider-Man|Sam Raimi (Sony Pictures)|2002|121
 DVD|Avatar|James Cameron (20th Century Fox)|2009|162
+Book|Beowulf: A New Translation|Maria Dahvana Headley|2020|176
+Book|Pachinko|Min Jin Lee|2017|490
 Magazine|They're Making Another Super Mario Movie|WIRED|2018|8
 Magazine|The World's Rarest Pair of Tweezers|Collectors|2015|9
 Magazine|Mount Everest: The Secrets it Holds|National Geographic|1999|2
