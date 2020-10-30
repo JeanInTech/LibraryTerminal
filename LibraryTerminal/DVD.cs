@@ -13,7 +13,7 @@ namespace LibraryTerminal
         {
             this.RunTime = RunTime;
         }
-        public DVD(string Title, string Author, int RunTime, ItemStatus Status, DateTime DueDate, int ReleaseYear) : base(Title, Author, Status, DueDate, ReleaseYear)
+        public DVD(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, int RunTime) : base(Title, Author, Status, DueDate, ReleaseYear)
         {
             this.RunTime = RunTime;
         }

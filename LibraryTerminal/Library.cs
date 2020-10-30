@@ -104,9 +104,9 @@ namespace LibraryTerminal
                     Console.WriteLine(Environment.NewLine + "You have checked out: ");
                     Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
                     DateTime checkoutDate = DateTime.Now;
-                    DateTime dueDate = checkoutDate.AddDays(14);
-                    Console.WriteLine($"   Due back by {dueDate:d}");
                     itemsList[index].Status = ItemStatus.CheckedOut;
+                    itemsList[index].DueDate = checkoutDate.AddDays(14);
+                    Console.WriteLine($"   Due back by {itemsList[index].DueDate:d}");
                     CnslFormatter.PauseByAnyKey();
                 }
                 else if(itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
