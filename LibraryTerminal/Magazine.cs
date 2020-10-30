@@ -15,7 +15,7 @@ namespace LibraryTerminal
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Publisher: {Author}");
             Console.WriteLine($"Issue: {PublishMonth}/{ReleaseYear}");
             if (ItemStatus.Equals("CheckedOut"))

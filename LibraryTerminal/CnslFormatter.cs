@@ -49,7 +49,7 @@ namespace LibraryTerminal
         // Stops program until user inputs a keystroke
         public static void PauseByAnyKey()
         {
-            Console.WriteLine("Press any Key to continue...");
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
         }

@@ -16,7 +16,7 @@ namespace LibraryTerminal
         }
         public override void PrintInfo()
         {
-            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Artist: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"Track List: {Tracks}");
