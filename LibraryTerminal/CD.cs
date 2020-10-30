@@ -14,7 +14,7 @@ namespace LibraryTerminal
         {
             this.Tracks = Tracks;
         }
-        public CD(string Title, string Author, int RunTime, ItemStatus Status, DateTime DueDate, int ReleaseYear) : base(Title, Author, Status, DueDate, ReleaseYear)
+        public CD(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, string Tracks) : base(Title, Author, Status, DueDate, ReleaseYear)
         {
             this.Tracks = Tracks;
         }
