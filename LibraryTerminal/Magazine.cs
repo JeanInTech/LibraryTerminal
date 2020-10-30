@@ -10,13 +10,12 @@ namespace LibraryTerminal
 
         public Magazine(string Title, string Author, int ReleaseYear, int PublishMonth) : base(Title, Author, ReleaseYear)
         {
-            
             this.PublishMonth = PublishMonth;
         }
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Publisher: {Author}");
             Console.WriteLine($"Issue: {PublishMonth}/{ReleaseYear}");
             if (ItemStatus.Equals("CheckedOut"))

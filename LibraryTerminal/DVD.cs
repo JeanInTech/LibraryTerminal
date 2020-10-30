@@ -9,14 +9,13 @@ namespace LibraryTerminal
     {
         public int RunTime { get; set;}
 
-
         public DVD(string Title, string Author, int ReleaseYear, int RunTime) : base(Title, Author, ReleaseYear)
         {
             this.RunTime = RunTime;
         }
         public override void PrintInfo()
         {
-            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Director: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"RunTime: {RunTime} minutes");
@@ -28,8 +27,6 @@ namespace LibraryTerminal
             {
                 Console.WriteLine($"Status: {ItemStatus}");
             }
-            
         }
-
     }
 }

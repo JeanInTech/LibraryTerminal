@@ -6,19 +6,16 @@ namespace LibraryTerminal
 {
     class Book : Item
     {
-        
         public int PageCount { get; set; }
 
         public Book(string Title, string Author, int ReleaseYear, int PageCount) : base(Title, Author, ReleaseYear)
         {
-           
             this.PageCount = PageCount;
         }
 
         public override void PrintInfo()
         {
             base.PrintInfo();
-            Console.WriteLine($"Type: Book");
             Console.WriteLine($"# of Pages: {PageCount}");
         }
     }

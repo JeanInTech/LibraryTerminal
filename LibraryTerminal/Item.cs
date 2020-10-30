@@ -6,7 +6,6 @@ namespace LibraryTerminal
 {
     abstract class Item
     {
-        
         public string Title { get; set; }
         public string Author { get; set; }
         public ItemStatus ItemStatus { get; set; }
@@ -24,7 +23,7 @@ namespace LibraryTerminal
         }
         public virtual void PrintInfo()
         {
-            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Author: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             if (ItemStatus.Equals("CheckedOut"))

@@ -8,7 +8,6 @@ namespace LibraryTerminal
 {
     class CD : Item
     {
-
         public string Tracks { get; set; }
 
         public CD(string Title, string Author, int ReleaseYear, string Tracks) : base(Title, Author, ReleaseYear)
@@ -17,7 +16,7 @@ namespace LibraryTerminal
         }
         public override void PrintInfo()
         {
-            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Artist: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"Track List: {Tracks}");
