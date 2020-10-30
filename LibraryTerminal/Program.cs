@@ -90,10 +90,25 @@ namespace LibraryTerminal
                 }
                 else if (input == "4")
                 {
-                    foreach(Item results in L.Catalog)
+                    List<Item> results = new List<Item>();
+                    foreach (Item itemMatch in L.Catalog)
                     {
-
+                        if (itemMatch.Status == ItemStatus.CheckedOut)
+                        {
+                            results.Add(itemMatch);
+                        }
                     }
+                    if (results.Count <= 0)
+                    {
+                        Console.WriteLine("No matches found");
+                        CnslFormatter.PauseByAnyKey();
+                    }
+                    else if (results.Count >= 1)
+                    foreach (Item result in results)
+                    {
+                        result.PrintInfo();
+                    }
+                CnslFormatter.PauseByAnyKey();
                 }
                 else if (input == "5")
                 {
