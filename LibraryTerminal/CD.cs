@@ -8,7 +8,6 @@ namespace LibraryTerminal
 {
     class CD : Item
     {
-
         public string Tracks { get; set; }
 
         public CD(string Title, string Author, int ReleaseYear, string Tracks) : base(Title, Author, ReleaseYear)

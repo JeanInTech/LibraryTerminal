@@ -10,7 +10,6 @@ namespace LibraryTerminal
 
         public Magazine(string Title, string Author, int ReleaseYear, int PublishMonth) : base(Title, Author, ReleaseYear)
         {
-            
             this.PublishMonth = PublishMonth;
         }
 
