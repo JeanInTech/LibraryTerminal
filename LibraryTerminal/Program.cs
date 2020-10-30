@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Security.Cryptography.X509Certificates;
 
 namespace LibraryTerminal
@@ -20,7 +21,12 @@ namespace LibraryTerminal
                 if(input == "1")
                 {
                     L.PrintItems();
-                    CnslFormatter.PauseByAnyKey();
+                    bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
+                    if(proceed)
+                    {
+                        string test = L.Checkout(L.Catalog);
+                        Console.WriteLine(test);
+                    }
                 }
                 else if (input == "2")
                 {
@@ -38,7 +44,11 @@ namespace LibraryTerminal
                         {
                             result.PrintInfo();
                         }
-                        //ask user if they would like to check out any items
+                        bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
+                        if (proceed)
+                        {
+                            L.Checkout(resultsAuthor);
+                        }
                     }
                 }
                 else if (input == "3")
@@ -57,7 +67,11 @@ namespace LibraryTerminal
                         {
                             result.PrintInfo();
                         }
-                        //ask user if they would like to check out any items
+                        bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
+                        if (proceed)
+                        {
+                            L.Checkout(resultsTitle);
+                        }
                     }
                 }
                 else if (input == "4")
