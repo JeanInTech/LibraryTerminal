@@ -14,15 +14,20 @@ namespace LibraryTerminal
             Item b1 = new Book("How Much of These Hills Is Gold: A Novel", "C Pam Zhang", 2020, 368);
             Catalog.Add(b1);
 
-
             //put items here
+            Item mag1 = new Magazine("They're Making Another Super Mario Movie", "WIRED", 2018, 8);
+            Item mag2 = new Magazine("The World's Rarest Pair of Tweezers", "Collectors", 2015, 9);
+            Item mag3 = new Magazine("Mount Everest: The Secrets it Holds", "National Geographic", 1999, 2);
+            Catalog.Add(mag1);
+            Catalog.Add(mag2);
+            Catalog.Add(mag3);
         }
         public void PrintItems()
         {
             for (int i = 0; i < Catalog.Count; i++)
             {
                 Item item = Catalog[i];
-            item.PrintInfo();
+                item.PrintInfo();
             }
         }
         //public List<Item> SearchByAuthor(string input)

@@ -9,7 +9,6 @@ namespace LibraryTerminal
     {
         public int RunTime { get; set;}
 
-
         public DVD(string Title, string Author, int ReleaseYear, int RunTime) : base(Title, Author, ReleaseYear)
         {
             this.RunTime = RunTime;
@@ -28,8 +27,6 @@ namespace LibraryTerminal
             {
                 Console.WriteLine($"Status: {ItemStatus}");
             }
-            
         }
-
     }
 }

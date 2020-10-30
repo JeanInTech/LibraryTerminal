@@ -6,7 +6,6 @@ namespace LibraryTerminal
 {
     abstract class Item
     {
-        
         public string Title { get; set; }
         public string Author { get; set; }
         public ItemStatus ItemStatus { get; set; }
