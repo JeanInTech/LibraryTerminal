@@ -153,19 +153,19 @@ namespace LibraryTerminal
             string itemType = itemInfo[0].ToLower();
             if (itemType.Equals("book"))
             {
-                return new Book(itemInfo[1], itemInfo[2],int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
+                return new Book(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             else if (itemType.Equals("cd"))
             {
-                return new CD(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), itemInfo[4]);
+                return new CD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), itemInfo[6]);
             }
             else if (itemType.Equals("dvd"))
             {
-                return new DVD(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
+                return new DVD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             else if (itemType.Equals("magazine"))
             {
-                return new Magazine(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
+                return new Magazine(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             return null;
         }
@@ -178,6 +178,8 @@ namespace LibraryTerminal
             itemEntry += itemType + "|";
             itemEntry += item.Title + "|";
             itemEntry += item.Author + "|";
+            itemEntry += (int)item.Status + "|";
+            itemEntry += item.DueDate + "|";
             itemEntry += item.ReleaseYear + "|";
 
             if (itemType.Equals("Book"))

@@ -21,6 +21,16 @@ namespace LibraryTerminal
             this.DueDate = DateTime.Now;
             this.ReleaseYear = ReleaseYear;
         }
+
+        public Item(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear)
+        {
+            this.Title = Title;
+            this.Author = Author;
+            this.Status = Status;
+            this.DueDate = DueDate;
+            this.ReleaseYear = ReleaseYear;
+        }
+
         public virtual void PrintInfo()
         {
             Console.WriteLine($"\nTitle: {Title}");

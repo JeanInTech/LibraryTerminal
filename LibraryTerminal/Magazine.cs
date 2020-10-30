@@ -14,6 +14,10 @@ namespace LibraryTerminal
             this.Status = 0;
         }
 
+        public Magazine(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, int PublishMonth) : base(Title, Author, Status, DueDate, ReleaseYear)
+        {
+            this.PublishMonth = PublishMonth;
+        }
         public override void PrintInfo()
         {
             Console.WriteLine($"\nTitle: {Title}");

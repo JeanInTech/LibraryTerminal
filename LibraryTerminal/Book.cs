@@ -13,6 +13,11 @@ namespace LibraryTerminal
             this.PageCount = PageCount;
         }
 
+        public Book(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, int PageCount) : base(Title, Author, Status, DueDate, ReleaseYear)
+        {
+            this.PageCount = PageCount;
+        }
+
         public override void PrintInfo()
         {
             base.PrintInfo();
