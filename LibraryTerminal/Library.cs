@@ -8,9 +8,11 @@ namespace LibraryTerminal
 {
     class Library
     {
-        public List<Item> Catalog { get; set; } = new List<Item>();
+        public List<Item> Catalog { get; set; }
         public Library()
         {
+            Catalog = new List<Item>();
+
             Item b1 = new Book("How Much of These Hills Is Gold", "C Pam Zhang", 2020, 368);
             Catalog.Add(b1);
 
@@ -50,12 +52,19 @@ namespace LibraryTerminal
             Catalog.Add(mag2);
             Catalog.Add(mag3);
         }
+
+        public Library(List<Item> Catalog)
+        {
+            this.Catalog = Catalog;
+        }
+
         public void PrintItems()
         {
             for (int i = 0; i < Catalog.Count; i++)
             {
                 Item item = Catalog[i];
                 item.PrintInfo();
+                CnslFormatter.MakeLineSpace(1);
             }
         }
         public List<Item> SearchByAuthor(string input)
