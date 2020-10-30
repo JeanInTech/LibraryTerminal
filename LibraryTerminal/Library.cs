@@ -26,7 +26,6 @@ namespace LibraryTerminal
             Item b5 = new Book("Pachinko", "Min Jin Lee", 2017, 490);
             Catalog.Add(b5);
           
-            //put items here
             Item mag1 = new Magazine("They're Making Another Super Mario Movie", "WIRED", 2018, 8);
             Item mag2 = new Magazine("The World's Rarest Pair of Tweezers", "Collectors", 2015, 9);
             Item mag3 = new Magazine("Mount Everest: The Secrets it Holds", "National Geographic", 1999, 2);
