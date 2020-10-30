@@ -11,9 +11,21 @@ namespace LibraryTerminal
         public List<Item> Catalog { get; set; } = new List<Item>();
         public Library()
         {
-            Item b1 = new Book("How Much of These Hills Is Gold: A Novel", "C Pam Zhang", 2020, 368);
+            Item b1 = new Book("How Much of These Hills Is Gold", "C Pam Zhang", 2020, 368);
             Catalog.Add(b1);
+          
+            Item b2 = new Book("Jade City", "Fonda Lee", 2017, 560);
+            Catalog.Add(b2);
 
+            Item b3 = new Book("The Poppy War", "R F Kuang", 2018, 544);
+            Catalog.Add(b3);
+
+            Item b4 = new Book("Beowulf: A New Translation", "Maria Dahvana Headley", 2020, 176);
+            Catalog.Add(b4);
+
+            Item b5 = new Book("Pachinko", "Min Jin Lee", 2017, 490);
+            Catalog.Add(b5);
+          
             //put items here
             Item mag1 = new Magazine("They're Making Another Super Mario Movie", "WIRED", 2018, 8);
             Item mag2 = new Magazine("The World's Rarest Pair of Tweezers", "Collectors", 2015, 9);
