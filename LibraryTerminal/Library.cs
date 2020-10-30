@@ -14,6 +14,22 @@ namespace LibraryTerminal
             Item b1 = new Book("How Much of These Hills Is Gold: A Novel", "C Pam Zhang", 2020, 368);
             Catalog.Add(b1);
 
+            Item c1 = new CD("1", "The Beatles", 2000, "27");
+            Item c2 = new CD("Thriller", "Michael Jackson", 1982, "9");
+            Item c3 = new CD("21", "Adele", 2011, "11");
+            Catalog.Add(c1);
+            Catalog.Add(c2);
+            Catalog.Add(c3);
+
+
+            Item d1 = new DVD("Finding Nemo", "Andrew Stanton (Pixar)", 2003, 100);
+            Item d2 = new DVD("Spider-Man", "Sam Raimi (Sony Pictures)",2002, 121);
+            Item d3 = new DVD("Avatar", "James Cameron (20th Century Fox)", 2009, 162);
+            Catalog.Add(d1);
+            Catalog.Add(d2);
+            Catalog.Add(d3);
+
+
 
             //put items here
         }
