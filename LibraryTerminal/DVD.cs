@@ -19,13 +19,13 @@ namespace LibraryTerminal
             Console.WriteLine($"Director: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"RunTime: {RunTime} minutes");
-            if (ItemStatus.Equals(ItemStatus.CheckedOut))
+            if (Status.Equals(ItemStatus.CheckedOut))
             {
-                Console.WriteLine($"Return Date: {DueDate}");
+                Console.WriteLine($"Return Date: {DueDate:d}");
             }
             else
             {
-                Console.WriteLine($"Status: {ItemStatus}");
+                Console.WriteLine($"Status: {Status}");
             }
         }
     }

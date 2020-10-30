@@ -11,6 +11,7 @@ namespace LibraryTerminal
         public Magazine(string Title, string Author, int ReleaseYear, int PublishMonth) : base(Title, Author, ReleaseYear)
         {
             this.PublishMonth = PublishMonth;
+            this.Status = 0;
         }
 
         public override void PrintInfo()
@@ -18,13 +19,13 @@ namespace LibraryTerminal
             Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Publisher: {Author}");
             Console.WriteLine($"Issue: {PublishMonth}/{ReleaseYear}");
-            if (ItemStatus.Equals(ItemStatus.CheckedOut))
+            if (Status.Equals(ItemStatus.CheckedOut))
             {
-                Console.WriteLine($"Return Date: {DueDate}");
+                Console.WriteLine($"Return Date: {DueDate:d}");
             }
             else
             {
-                Console.WriteLine($"Status: {ItemStatus}");
+                Console.WriteLine($"Status: {Status}");
             }
         }
     }

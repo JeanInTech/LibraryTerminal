@@ -99,17 +99,17 @@ namespace LibraryTerminal
             {
                 int index = num - 1;
 
-                if (itemsList[index].ItemStatus == ItemStatus.OnShelf)
+                if (itemsList[index].Status == ItemStatus.OnShelf)
                 {
                     Console.WriteLine(Environment.NewLine + "You have checked out: ");
                     Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
                     DateTime checkoutDate = DateTime.Now;
                     DateTime dueDate = checkoutDate.AddDays(14);
                     Console.WriteLine($"   Due back by {dueDate:d}");
-                    itemsList[index].ItemStatus = ItemStatus.CheckedOut;
+                    itemsList[index].Status = ItemStatus.CheckedOut;
                     CnslFormatter.PauseByAnyKey();
                 }
-                else if(itemsList[index].ItemStatus == ItemStatus.CheckedOut)
+                else if(itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
                 {
                     Console.WriteLine("Item is already checked out. Cannot complete checkout at this time.");
                 }
