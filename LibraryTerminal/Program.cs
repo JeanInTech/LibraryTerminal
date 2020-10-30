@@ -89,7 +89,10 @@ namespace LibraryTerminal
                 }
                 else if (input == "4")
                 {
-                    //Show items you have checked out 
+                    foreach(Item results in L.Catalog)
+                    {
+
+                    }
                 }
                 else if (input == "5")
                 {
