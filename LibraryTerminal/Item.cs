@@ -26,7 +26,7 @@ namespace LibraryTerminal
             Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Author: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
-            if (ItemStatus.Equals("CheckedOut"))
+            if (ItemStatus.Equals(ItemStatus.CheckedOut))
             {
                 Console.WriteLine($"Return Date: {DueDate}");
             }

@@ -20,7 +20,7 @@ namespace LibraryTerminal
             Console.WriteLine($"Artist: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"Track List: {Tracks}");
-            if (ItemStatus.Equals("CheckedOut"))
+            if (ItemStatus.Equals(ItemStatus.CheckedOut))
             {
                 Console.WriteLine($"Return Date: {DueDate}");
             }

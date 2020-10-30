@@ -22,9 +22,7 @@ namespace LibraryTerminal
             }
             reader.Close();
 
-            //Library L = new Library();
             Library L = new Library(itemsLoaded);
-            L.PrintItems();
 
             bool userContinue = true;
 
@@ -40,8 +38,7 @@ namespace LibraryTerminal
                     bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
                     if(proceed)
                     {
-                        string test = L.Checkout(L.Catalog);
-                        Console.WriteLine(test);
+                        L.Checkout(L.Catalog);
                     }
                 }
                 else if (input == "2")
@@ -137,7 +134,6 @@ namespace LibraryTerminal
             else
                 return false;
         }
-
         public static Item GenerateItem(string[] itemInfo)
         {
             string itemType = itemInfo[0].ToLower();
