@@ -35,20 +35,31 @@ namespace LibraryTerminal
             item.PrintInfo();
             }
         }
-        //public List<Item> SearchByAuthor(string input)
-        //{
-        //    //search by author method
-        //    List<Item> results = new List<Item>();
-        //    foreach (Item itemMatch in Catalog)
-        //    {
-        //        //item.author == "input")
-        //    }
-
-        //}
-        //public List<Item> SearchByTitle(string input)
-        //{
-        //    //search by author
-        //}
+        public List<Item> SearchByAuthor(string input)
+        {
+            List<Item> results = new List<Item>();
+            foreach (Item itemMatch in Catalog)
+            {
+                if (itemMatch.Author.Contains(input))
+                {
+                    results.Add(itemMatch);
+                }
+            }
+            return results;
+            }
+        public List<Item> SearchByTitle(string input)
+        {
+            List<Item> results = new List<Item>();
+            foreach (Item itemMatch in Catalog)
+            {
+                if (itemMatch.Title.Contains(input))
+                {
+                    results.Add(itemMatch);
+                }
+            }
+            return results;
+        }
+    }
         //public Item Checkout()
         //{
         //    Console.WriteLine($"Please select which item from the list:");
@@ -84,6 +95,6 @@ namespace LibraryTerminal
         //public void CheckIn(Item)
         //{
         //    //enter code here
-            }
-        }
+    }
+        
 
