@@ -100,7 +100,7 @@ namespace LibraryTerminal
                     }
                     if (results.Count <= 0)
                     {
-                        Console.WriteLine("No matches found");
+                        Console.WriteLine("No matches found.");
                         CnslFormatter.PauseByAnyKey();
                     }
                     else if (results.Count >= 1)
@@ -111,10 +111,6 @@ namespace LibraryTerminal
                 CnslFormatter.PauseByAnyKey();
                 }
                 else if (input == "5")
-                {
-                    //return a book 
-                }
-                else if (input == "6")
                 {
                     userContinue = false;
                 }
@@ -145,8 +141,7 @@ namespace LibraryTerminal
             Console.WriteLine($"\t2. Search for a book by author.");
             Console.WriteLine($"\t3. Search for a book by title.");
             Console.WriteLine($"\t4. Show items you have checked out.");
-            Console.WriteLine($"\t5. Return a book.");
-            Console.WriteLine($"\t6. Quit.");
+            Console.WriteLine($"\t5. Quit.");
         }
         public static bool UserContinue(string message)
         {
@@ -171,23 +166,22 @@ namespace LibraryTerminal
             string itemType = itemInfo[0].ToLower();
             if (itemType.Equals("book"))
             {
-                return new Book(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
+                return new Book(itemInfo[1], itemInfo[2],int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
             }
             else if (itemType.Equals("cd"))
             {
-                return new CD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), itemInfo[6]);
+                return new CD(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), itemInfo[4]);
             }
             else if (itemType.Equals("dvd"))
             {
-                return new DVD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
+                return new DVD(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
             }
             else if (itemType.Equals("magazine"))
             {
-                return new Magazine(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
+                return new Magazine(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
             }
             return null;
         }
-
         public static string GenerateEntry(Item item)
         {
             string itemEntry = "";
@@ -196,8 +190,6 @@ namespace LibraryTerminal
             itemEntry += itemType + "|";
             itemEntry += item.Title + "|";
             itemEntry += item.Author + "|";
-            itemEntry += (int)item.Status + "|";
-            itemEntry += item.DueDate + "|";
             itemEntry += item.ReleaseYear + "|";
 
             if (itemType.Equals("Book"))
