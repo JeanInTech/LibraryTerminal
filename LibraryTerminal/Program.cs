@@ -112,7 +112,11 @@ namespace LibraryTerminal
                 }
                 else if (input == "5")
                 {
-                    //return a book 
+                    bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check in an item?");
+                    if (proceed)
+                    {
+                        L.CheckIn(L.Catalog);
+                    }
                 }
                 else if (input == "6")
                 {
