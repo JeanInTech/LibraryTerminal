@@ -33,7 +33,7 @@ namespace LibraryTerminal
             Catalog.Add(c3);
 
             Item d1 = new DVD("Finding Nemo", "Andrew Stanton (Pixar)", 2003, 100);
-            Item d2 = new DVD("Spider-Man", "Sam Raimi (Sony Pictures)",2002, 121);
+            Item d2 = new DVD("Spider-Man", "Sam Raimi (Sony Pictures)", 2002, 121);
             Item d3 = new DVD("Avatar", "James Cameron (20th Century Fox)", 2009, 162);
             Catalog.Add(d1);
             Catalog.Add(d2);
@@ -90,7 +90,7 @@ namespace LibraryTerminal
             Console.Clear();
             for (int i = 0; i < itemsList.Count; i++)
             {
-                Console.Write($"{Environment.NewLine}Item {i+1}.");
+                Console.Write($"{Environment.NewLine}Item {i + 1}.");
                 itemsList[i].PrintInfo();
             }
 
@@ -109,7 +109,7 @@ namespace LibraryTerminal
                     Console.WriteLine($"   Due back by {itemsList[index].DueDate:d}");
                     CnslFormatter.PauseByAnyKey();
                 }
-                else if(itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
+                else if (itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
                 {
                     Console.WriteLine("Item is already checked out. Cannot complete checkout at this time.");
                 }
@@ -119,11 +119,38 @@ namespace LibraryTerminal
                 }
             }
         }
-        public void CheckIn(Item m)
+        public void CheckIn(List<Item> itemsList)
         {
-            //enter code here
-        }
+            Console.Clear();
+            for (int i = 0; i < itemsList.Count; i++)
+            {
+                Console.Write($"{Environment.NewLine}Item {i + 1}.");
+                itemsList[i].PrintInfo();
+            }
 
+            string input = CnslFormatter.PromptForInput($"Please select the item you would like to check in. [Enter 1 - {itemsList.Count}]: ");
+            if (Int32.TryParse(input, out int num))
+            {
+                int index = num - 1;
+
+                if (itemsList[index].Status == ItemStatus.CheckedOut)
+                {
+                    Console.WriteLine(Environment.NewLine + "You have checked in: ");
+                    Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
+                    itemsList[index].Status = ItemStatus.OnShelf;
+                    CnslFormatter.PauseByAnyKey();
+                }
+                else if (itemsList[index].Status == ItemStatus.OnShelf)
+                {
+                    Console.WriteLine("Item is already checked in. Cannot complete checkout at this time.");
+                }
+                else
+                {
+                    Console.WriteLine("Cannot complete checkout at this time.");
+                }
+            }
+
+        }
     }
 }
         
