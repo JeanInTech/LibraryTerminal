@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -52,6 +53,8 @@ namespace LibraryTerminal
             this.Catalog = Catalog;
         }
 
+        // Prints the Library's Catalog into the console as individual entries.
+        // Each entry has their information displayed on the console.
         public void PrintItems()
         {
             for (int i = 0; i < Catalog.Count; i++)
@@ -61,6 +64,8 @@ namespace LibraryTerminal
                 CnslFormatter.MakeLineSpace(1);
             }
         }
+
+        // Takes a List of Items and returns another List contains Items with an Author value that matches the string input
         public List<Item> SearchByAuthor(string input)
         {
             List<Item> results = new List<Item>();
@@ -73,6 +78,8 @@ namespace LibraryTerminal
             }
             return results;
         }
+
+        // Takes a List of Items and returns another List contains Items with an Title value that matches the string input
         public List<Item> SearchByTitle(string input)
         {
             List<Item> results = new List<Item>();
@@ -85,8 +92,13 @@ namespace LibraryTerminal
             }
             return results;
         }
+
+        // Finds the specified Item within the Library's Catalog and checks to see if it is available to be checked out.
+        // If available, the Item's status is changed to CheckedOut, and their DueDate value is changed to 14 days following the current date/time.
+        // If it is already checked out, the console states that the item is not available.
         public void Checkout(List<Item> itemsList)
         {
+            // Display current list's contents for index input reference.
             Console.Clear();
             for (int i = 0; i < itemsList.Count; i++)
             {
@@ -94,33 +106,52 @@ namespace LibraryTerminal
                 itemsList[i].PrintInfo();
             }
 
+            // Prompt user for selection within the range of available items.
             string input = CnslFormatter.PromptForInput($"Please select the item you would like to checkout. [Enter 1 - {itemsList.Count}]: ");
             if (Int32.TryParse(input, out int num))
             {
                 int index = num - 1;
 
-                if (itemsList[index].Status == ItemStatus.OnShelf)
+                // Check if the input integer is considered in bounds
+                if (index < 0 || index >= itemsList.Count)
                 {
-                    Console.WriteLine(Environment.NewLine + "You have checked out: ");
-                    Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
-                    DateTime checkoutDate = DateTime.Now;
-                    itemsList[index].Status = ItemStatus.CheckedOut;
-                    itemsList[index].DueDate = checkoutDate.AddDays(14);
-                    Console.WriteLine($"   Due back by {itemsList[index].DueDate:d}");
-                    CnslFormatter.PauseByAnyKey();
-                }
-                else if (itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
-                {
-                    Console.WriteLine("Item is already checked out. Cannot complete checkout at this time.");
+                    Console.WriteLine($"Input out of range, please enter a value between 1 and {itemsList.Count}! Returning to Menu!");
                 }
                 else
                 {
-                    Console.WriteLine("Cannot complete checkout at this time.");
+                    // Find matching item and change its properties to have it represented as checked out.
+                    if (itemsList[index].Status == ItemStatus.OnShelf)
+                    {
+                        Console.WriteLine(Environment.NewLine + "You have checked out: ");
+                        Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
+                        DateTime checkoutDate = DateTime.Now;
+                        itemsList[index].Status = ItemStatus.CheckedOut;
+                        itemsList[index].DueDate = checkoutDate.AddDays(14);
+                        Console.WriteLine($"   Due back by {itemsList[index].DueDate:d}");
+                        CnslFormatter.PauseByAnyKey();
+                    }
+                    else if (itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
+                    {
+                        Console.WriteLine("Item is already checked out. Cannot complete checkout at this time.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cannot complete checkout at this time.");
+                    }
                 }
             }
+            else
+            {
+                Console.WriteLine("Non-Integer input detected. Please enter an integer next time. Returning to Menu!");
+            }
         }
+
+        // Finds the specified Item within the Library's Catalog and checks to see if it is checked out to then be checked back in.
+        // If checked out, the Item's status is changed to OnShelf (checked in).
+        // If it is already checked in, the console states that the item is already checked in.
         public void CheckIn(List<Item> itemsList)
         {
+            // Display current list's contents for index input reference.
             Console.Clear();
             for (int i = 0; i < itemsList.Count; i++)
             {
@@ -128,28 +159,157 @@ namespace LibraryTerminal
                 itemsList[i].PrintInfo();
             }
 
+            // Prompt user for selection within the range of available items.
             string input = CnslFormatter.PromptForInput($"Please select the item you would like to check in. [Enter 1 - {itemsList.Count}]: ");
             if (Int32.TryParse(input, out int num))
             {
                 int index = num - 1;
 
-                if (itemsList[index].Status == ItemStatus.CheckedOut)
+                // Check if the input integer is considered in bounds
+                if (index < 0 || index >= itemsList.Count)
                 {
-                    Console.WriteLine(Environment.NewLine + "You have checked in: ");
-                    Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
-                    itemsList[index].Status = ItemStatus.OnShelf;
-                    CnslFormatter.PauseByAnyKey();
-                }
-                else if (itemsList[index].Status == ItemStatus.OnShelf)
-                {
-                    Console.WriteLine("Item is already checked in. Cannot complete checkout at this time.");
+                    Console.WriteLine($"Input out of range, please enter a value between 1 and {itemsList.Count}! Returning to Menu!");
                 }
                 else
                 {
-                    Console.WriteLine("Cannot complete checkout at this time.");
+                    // Find matching item and change its properties to have it represented as checked in.
+                    if (itemsList[index].Status == ItemStatus.CheckedOut)
+                    {
+                        Console.WriteLine(Environment.NewLine + "You have checked in: ");
+                        Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
+                        itemsList[index].Status = ItemStatus.OnShelf;
+                        CnslFormatter.PauseByAnyKey();
+                    }
+                    else if (itemsList[index].Status == ItemStatus.OnShelf)
+                    {
+                        Console.WriteLine("Item is already checked in. Cannot complete checkout at this time.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cannot complete checkout at this time.");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Non-Integer input detected. Please enter an integer next time. Returning to Menu!");
+            }
+        }
+
+        // Prompts User for multiple inputs that will serve as the info for a new Item.
+        // The new Item will then be placed into the Catalog
+        public void AddNewItem()
+        {
+            string newTitle = CnslFormatter.PromptForInput("Please enter the Title of the new Item: ");
+            string newAuthor = CnslFormatter.PromptForInput("Please enter the Author of the new Item: ");
+            int newYear = -1;
+            while (true)
+            {
+                string newYearStr = CnslFormatter.PromptForInput("Please enter the Release Year of the new Item: ");
+                if (Int32.TryParse(newYearStr, out newYear))
+                {
+                    break;
+                }
+            }
+            // Type Prompt, user enters a string to determine which kind of Item should be created through specialized calls.
+            // Will repeat until a valid string value is given.
+            while (true)
+            {
+                string newType = CnslFormatter.PromptForInput("Please enter the Type of the new Item: [book,cd,dvd,magazine]");
+                if (newType.ToLower().Equals("book"))
+                {
+                    Item newBook = MakeNewBook(newTitle, newAuthor, newYear);
+                    Catalog.Add(newBook);
+                    Console.WriteLine("New Book Added to Catalog!");
+                    break;
+                }
+                else if (newType.ToLower().Equals("cd"))
+                {
+                    Item newCD = MakeNewCD(newTitle, newAuthor, newYear);
+                    Catalog.Add(newCD);
+                    Console.WriteLine("New CD Added to Catalog!");
+                    break;
+                }
+                else if (newType.ToLower().Equals("dvd"))
+                {
+                    Item newDVD = MakeNewDVD(newTitle, newAuthor, newYear);
+                    Catalog.Add(newDVD);
+                    Console.WriteLine("New DVD Added to Catalog!");
+                    break;
+                }
+                else if (newType.ToLower().Equals("magazine"))
+                {
+                    Item newMagazine = MakeNewMagazine(newTitle, newAuthor, newYear);
+                    Catalog.Add(newMagazine);
+                    Console.WriteLine("New Magazine Added to Catalog!");
+                    break;
+                }
+            }
+        }
+
+        // Returns a new Book using base Item values for arguments, and specialized values given by user.
+        // Input prompt will repeat until a valid integer is given.
+        public Item MakeNewBook(string title, string author, int year)
+        {
+            int newPageCnt = -1;
+            while (true)
+            {
+                string newPageCntStr = CnslFormatter.PromptForInput("Please enter the PageCount of the new Book: ");
+                if (Int32.TryParse(newPageCntStr, out newPageCnt))
+                {
+                    break;
                 }
             }
 
+            Item newBook = new Book(title, author, year, newPageCnt);
+            return newBook;
+        }
+
+        // Returns a new CD using base Item values for arguments, and specialized values given by user.
+        public Item MakeNewCD(string title, string author, int year)
+        {
+            string newTracks = CnslFormatter.PromptForInput("Please enter the Tracks of the new CD: ");
+            Item newCD = new CD(title, author, year, newTracks);
+            return newCD;
+        }
+
+        // Returns a new DVD using base Item values for arguments, and specialized values given by user.
+        // Input prompt will repeat until a valid integer is given.
+        public Item MakeNewDVD(string title, string author, int year)
+        {
+            int newRunTime = -1;
+            while (true)
+            {
+                string newRunTimeStr = CnslFormatter.PromptForInput("Please enter the RunTime of the new DVD: ");
+                if (Int32.TryParse(newRunTimeStr, out newRunTime))
+                {
+                    break;
+                }
+            }
+
+            Item newDVD = new DVD(title, author, year, newRunTime);
+            return newDVD;
+        }
+
+        // Returns a new Magazine using base Item values for arguments, and specialized values given by user.
+        // Input prompt will repeat until a valid integer between 1 and 12 is given.
+        public Item MakeNewMagazine(string title, string author, int year)
+        {
+            int newMonth = -1;
+            while (true)
+            {
+                string newRunTimeStr = CnslFormatter.PromptForInput("Please enter the RunTime of the new DVD: ");
+                if (Int32.TryParse(newRunTimeStr, out newMonth))
+                {
+                    if (!(newMonth < 1 || newMonth > 12))
+                    {
+                        break;
+                    }
+                }
+            }
+
+            Item newMagazine = new Magazine(title, author, year, newMonth);
+            return newMagazine;
         }
     }
 }
