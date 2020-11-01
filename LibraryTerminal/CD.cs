@@ -14,19 +14,23 @@ namespace LibraryTerminal
         {
             this.Tracks = Tracks;
         }
+        public CD(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, string Tracks) : base(Title, Author, Status, DueDate, ReleaseYear)
+        {
+            this.Tracks = Tracks;
+        }
         public override void PrintInfo()
         {
             Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Artist: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"Track List: {Tracks}");
-            if (ItemStatus.Equals("CheckedOut"))
+            if (Status.Equals(ItemStatus.CheckedOut))
             {
-                Console.WriteLine($"Return Date: {DueDate}");
+                Console.WriteLine($"Return Date: {DueDate:d}");
             }
             else
             {
-                Console.WriteLine($"Status: {ItemStatus}");
+                Console.WriteLine($"Status: {Status}");
             }
         }
 

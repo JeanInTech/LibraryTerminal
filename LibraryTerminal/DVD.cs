@@ -13,19 +13,23 @@ namespace LibraryTerminal
         {
             this.RunTime = RunTime;
         }
+        public DVD(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, int RunTime) : base(Title, Author, Status, DueDate, ReleaseYear)
+        {
+            this.RunTime = RunTime;
+        }
         public override void PrintInfo()
         {
             Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Director: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"RunTime: {RunTime} minutes");
-            if (ItemStatus.Equals("CheckedOut"))
+            if (Status.Equals(ItemStatus.CheckedOut))
             {
-                Console.WriteLine($"Return Date: {DueDate}");
+                Console.WriteLine($"Return Date: {DueDate:d}");
             }
             else
             {
-                Console.WriteLine($"Status: {ItemStatus}");
+                Console.WriteLine($"Status: {Status}");
             }
         }
     }
