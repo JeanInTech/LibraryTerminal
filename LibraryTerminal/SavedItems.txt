@@ -12,3 +12,5 @@ DVD|Avatar|James Cameron (20th Century Fox)|0|10/30/2020 4:53:10 PM|2009|162
 Magazine|They're Making Another Super Mario Movie|WIRED|0|10/30/2020 4:53:10 PM|2018|8
 Magazine|The World's Rarest Pair of Tweezers|Collectors|0|11/13/2020 4:59:31 PM|2015|9
 Magazine|Mount Everest: The Secrets it Holds|National Geographic|0|10/30/2020 4:53:10 PM|1999|2
+Book|Minecraft Guide|Markus Persson|0|11/16/2020 9:42:52 AM|2016|129
+Magazine|Nvidia Drivers|PC Gaming Monthly|0|11/2/2020 9:37:25 AM|2019|12

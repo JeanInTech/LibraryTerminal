@@ -139,6 +139,7 @@ namespace LibraryTerminal
             {
                 Console.WriteLine("Non-Integer input detected. Please enter an integer next time. Returning to Menu!");
             }
+            CnslFormatter.PauseByAnyKey();
         }
 
         // Finds the specified Item within the Library's Catalog and checks to see if it is checked out to then be checked back in.
@@ -172,7 +173,6 @@ namespace LibraryTerminal
                             Console.WriteLine(Environment.NewLine + "You have checked in: ");
                             Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
                             itemsList[index].Status = ItemStatus.OnShelf;
-                            CnslFormatter.PauseByAnyKey();
                             proceed = false;
                         }
                         else
@@ -186,6 +186,7 @@ namespace LibraryTerminal
                     Console.WriteLine("Non-Integer input detected. Please enter an integer.");
                 }
             }
+            CnslFormatter.PauseByAnyKey();
         }
         // Prompts User for multiple inputs that will serve as the info for a new Item.
         // The new Item will then be placed into the Catalog
@@ -289,7 +290,7 @@ namespace LibraryTerminal
             int newMonth = -1;
             while (true)
             {
-                string newRunTimeStr = CnslFormatter.PromptForInput("Please enter the RunTime of the new DVD: ");
+                string newRunTimeStr = CnslFormatter.PromptForInput("Please enter the Month of Publishing of the new Magazine: ");
                 if (Int32.TryParse(newRunTimeStr, out newMonth))
                 {
                     if (!(newMonth < 1 || newMonth > 12))
