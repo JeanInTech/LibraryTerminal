@@ -63,8 +63,9 @@ namespace LibraryTerminal
                         foreach (Item result in resultsAuthor)
                         {
                             result.PrintInfo();
+                            Console.WriteLine();
                         }
-                        bool proceed = CnslFormatter.AskYesOrNo($"\nWould you like to check out an item?");
+                        bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
                         if (proceed)
                         {
                             L.Checkout(resultsAuthor);
@@ -88,8 +89,9 @@ namespace LibraryTerminal
                         foreach (Item result in resultsTitle)
                         {
                             result.PrintInfo();
+                            Console.WriteLine();
                         }
-                        bool proceed = CnslFormatter.AskYesOrNo($"\nWould you like to check out an item?");
+                        bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
                         if (proceed)
                         {
                             L.Checkout(resultsTitle);
