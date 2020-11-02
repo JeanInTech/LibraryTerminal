@@ -104,14 +104,14 @@ namespace LibraryTerminal
                 Console.Write($"{Environment.NewLine}Item {i + 1}.");
                 itemsList[i].PrintInfo();
             }
-            string input = CnslFormatter.PromptForInput($"Please select the item you would like to checkout. [Enter 1 - {itemsList.Count}]: ");
+            string input = CnslFormatter.PromptForInput($"Please select the item you would like to checkout. [{CnslFormatter.MoreThanOne(itemsList)}]: ");
             if (Int32.TryParse(input, out int num))
             {
                 int index = num - 1;
 
                 if (index < 0 || index >= itemsList.Count)
                 {
-                    Console.WriteLine($"Input out of range, please enter a value between 1 and {itemsList.Count}! Returning to Menu!");
+                    Console.WriteLine($"Input out of range. {CnslFormatter.MoreThanOne(itemsList)}.");
                 }
                 else
                 {
@@ -137,9 +137,8 @@ namespace LibraryTerminal
             }
             else
             {
-                Console.WriteLine("Non-Integer input detected. Please enter an integer next time. Returning to Menu!");
+                Console.WriteLine("Non-Integer input detected. Please enter an integer next time.");
             }
-            CnslFormatter.PauseByAnyKey();
         }
 
         // Finds the specified Item within the Library's Catalog and checks to see if it is checked out to then be checked back in.
@@ -157,14 +156,14 @@ namespace LibraryTerminal
                     Console.Write($"{Environment.NewLine}Item {i + 1}.");
                     itemsList[i].PrintInfo();
                 }
-                string input = CnslFormatter.PromptForInput($"Please select the item you would like to return? [Enter 1 - {itemsList.Count}]: ");
+                string input = CnslFormatter.PromptForInput($"Please select the item you would like to return? [{CnslFormatter.MoreThanOne(itemsList)}]: ");
                 if (Int32.TryParse(input, out int num))
                 {
                     int index = num - 1;
 
                     if (index < 0 || index >= itemsList.Count)
                     {
-                        Console.WriteLine($"Input out of range, please enter a value between 1 and {itemsList.Count}.");
+                        Console.WriteLine($"Input out of range. {CnslFormatter.MoreThanOne(itemsList)}.");
                     }
                     else
                     {
@@ -299,7 +298,6 @@ namespace LibraryTerminal
                     }
                 }
             }
-
             Item newMagazine = new Magazine(title, author, year, newMonth);
             return newMagazine;
         }

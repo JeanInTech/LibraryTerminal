@@ -11,8 +11,8 @@ namespace LibraryTerminal
     {
         static void Main(string[] args)
         {
-            
-            List<Item> itemsLoaded = new List<Item>();            
+
+            List<Item> itemsLoaded = new List<Item>();
             StreamReader reader = new StreamReader("../../../SavedItems.txt");
             string line = reader.ReadLine();
             while (line != null)
@@ -28,7 +28,7 @@ namespace LibraryTerminal
 
             bool userContinue = true;
 
-            
+
             Console.WriteLine("Welcome to the Library!"); //displays the main library menu
             while (userContinue)
             {
@@ -36,18 +36,18 @@ namespace LibraryTerminal
                 LibraryMenu();
                 string input = CnslFormatter.PromptForInput($"What would you like to do? ");
 
-                if(input == "1")  //prompts user to ask if they want to check out an item
+                if (input == "1")  //prompts user to ask if they want to check out an item
                 {
                     L.PrintItems();
                     bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
-                    if(proceed)
+                    if (proceed)
                     {
                         L.Checkout(L.Catalog);
                     }
                 }
                 else if (input == "2") //prompt for user to search by author name
                 {
-                    input = CnslFormatter.PromptForInput("Please enter name to search: "); 
+                    input = CnslFormatter.PromptForInput("Please enter name to search: ");
                     List<Item> resultsAuthor = L.SearchByAuthor(input);
 
                     if (resultsAuthor.Count == 0)
@@ -70,7 +70,7 @@ namespace LibraryTerminal
                 }
                 else if (input == "3") //prompt for user to search by title
                 {
-                    input = CnslFormatter.PromptForInput("Please enter title to search: "); 
+                    input = CnslFormatter.PromptForInput("Please enter title to search: ");
                     List<Item> resultsTitle = L.SearchByTitle(input);
 
                     if (resultsTitle.Count == 0)
@@ -96,14 +96,14 @@ namespace LibraryTerminal
                     List<Item> results = new List<Item>();
                     foreach (Item itemMatch in L.Catalog)
                     {
-                        if (itemMatch.Status == ItemStatus.CheckedOut)
+                        if (itemMatch.Status == ItemStatus.CheckedOut || itemMatch.Status == ItemStatus.Overdue)
                         {
                             results.Add(itemMatch);
                         }
                     }
                     if (results.Count <= 0)
                     {
-                        Console.WriteLine("No matches found.");
+                        Console.WriteLine("No matches found");
                         CnslFormatter.PauseByAnyKey();
                     }
                     else if (results.Count >= 1)
@@ -115,7 +115,11 @@ namespace LibraryTerminal
                         L.CheckIn(results);
                     }
                 }
-                else if (input == "5") 
+                else if (input == "5")  //Brings up a series of prompts for the user to create new items
+                {
+                    L.AddNewItem();
+                }
+                else if (input == "6")  //displays item list and asks if user want to check in an item
                 {
                     userContinue = false;
                 }
@@ -126,7 +130,7 @@ namespace LibraryTerminal
                 }
             }
             Console.WriteLine("Saving Library Content!");
-            
+
             File.WriteAllText("../../../SavedItems.txt", string.Empty); // Clear the File
             StreamWriter writer = new StreamWriter("../../../SavedItems.txt"); // Should generate new file if deleted
             List<Item> itemsSaved = L.Catalog;
@@ -172,22 +176,23 @@ namespace LibraryTerminal
             string itemType = itemInfo[0].ToLower();
             if (itemType.Equals("book"))
             {
-                return new Book(itemInfo[1], itemInfo[2],int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
+                return new Book(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             else if (itemType.Equals("cd"))
             {
-                return new CD(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), itemInfo[4]);
+                return new CD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), itemInfo[6]);
             }
             else if (itemType.Equals("dvd"))
             {
-                return new DVD(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
+                return new DVD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             else if (itemType.Equals("magazine"))
             {
-                return new Magazine(itemInfo[1], itemInfo[2], int.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
+                return new Magazine(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             return null;
         }
+
         public static string GenerateEntry(Item item) //listing for library media in the .txt file. Type of media, title, author, release year, etc. Output
         {
             string itemEntry = "";
@@ -196,6 +201,8 @@ namespace LibraryTerminal
             itemEntry += itemType + "|";
             itemEntry += item.Title + "|";
             itemEntry += item.Author + "|";
+            itemEntry += (int)item.Status + "|";
+            itemEntry += item.DueDate + "|";
             itemEntry += item.ReleaseYear + "|";
 
             if (itemType.Equals("Book"))
