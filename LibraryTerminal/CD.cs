@@ -8,13 +8,13 @@ namespace LibraryTerminal
 {
     class CD : Item
     {
-        public string Tracks { get; set; }
+        public int Tracks { get; set; }
 
-        public CD(string Title, string Author, int ReleaseYear, string Tracks) : base(Title, Author, ReleaseYear)
+        public CD(string Title, string Author, int ReleaseYear, int Tracks) : base(Title, Author, ReleaseYear)
         {
             this.Tracks = Tracks;
         }
-        public CD(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, string Tracks) : base(Title, Author, Status, DueDate, ReleaseYear)
+        public CD(string Title, string Author, ItemStatus Status, DateTime DueDate, int ReleaseYear, int Tracks) : base(Title, Author, Status, DueDate, ReleaseYear)
         {
             this.Tracks = Tracks;
         }

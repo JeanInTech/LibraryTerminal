@@ -26,9 +26,9 @@ namespace LibraryTerminal
             Catalog.Add(b4);
             Catalog.Add(b5);
 
-            Item c1 = new CD("1", "The Beatles", 2000, "27");
-            Item c2 = new CD("Thriller", "Michael Jackson", 1982, "9");
-            Item c3 = new CD("21", "Adele", 2011, "11");
+            Item c1 = new CD("1", "The Beatles", 2000, 27);
+            Item c2 = new CD("Thriller", "Michael Jackson", 1982, 9);
+            Item c3 = new CD("21", "Adele", 2011, 11);
             Catalog.Add(c1);
             Catalog.Add(c2);
             Catalog.Add(c3);
@@ -148,7 +148,7 @@ namespace LibraryTerminal
         {
             bool proceed = CnslFormatter.AskYesOrNo($"Would you like to return an item? ");
 
-            while(proceed)
+            while (proceed)
             {
                 Console.Clear();
                 for (int i = 0; i < itemsList.Count; i++)
@@ -259,9 +259,19 @@ namespace LibraryTerminal
         // Returns a new CD using base Item values for arguments, and specialized values given by user.
         public Item MakeNewCD(string title, string author, int year)
         {
-            string newTracks = CnslFormatter.PromptForInput("Please enter the Tracks of the new CD: ");
-            Item newCD = new CD(title, author, year, newTracks);
-            return newCD;
+            while(true)
+            {
+                try
+                {
+                    int newTracks = Int32.Parse(CnslFormatter.PromptForInput("Please enter the Tracks of the new CD: "));
+                    Item newCD = new CD(title, author, year, newTracks);
+                    return newCD;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a valid number");
+                }
+            }
         }
 
         // Returns a new DVD using base Item values for arguments, and specialized values given by user.
@@ -303,5 +313,5 @@ namespace LibraryTerminal
         }
     }
 }
-        
+
 
