@@ -2,7 +2,7 @@ Book|How Much of These Hills Is Gold|C Pam Zhang|0|10/30/2020 4:53:10 PM|2020|36
 Book|Jade City|Fonda Lee|3|10/16/2020 10:34:58 AM|2017|560
 Book|The Poppy War|R F Kuang|0|10/30/2020 4:53:10 PM|2018|544
 Book|Beowulf: A New Translation|Maria Dahvana Headley|0|10/30/2020 4:53:10 PM|2020|176
-Book|Pachinko|Min Jin Lee|0|10/30/2020 4:53:10 PM|2017|490
+Book|Pachinko|Min Jin Lee|1|11/16/2020 10:43:40 AM|2017|490
 CD|1|The Beatles|0|10/30/2020 4:53:10 PM|2000|27
 CD|Thriller|Michael Jackson|0|10/30/2020 4:53:10 PM|1982|9
 CD|21|Adele|0|10/30/2020 4:53:10 PM|2011|11

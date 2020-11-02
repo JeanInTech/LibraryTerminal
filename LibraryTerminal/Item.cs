@@ -57,6 +57,12 @@ namespace LibraryTerminal
                     Console.ResetColor();
                 }
             }
+            else if (Status.Equals(ItemStatus.Overdue))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Status: {Status}");
+                Console.ResetColor();
+            }
             else
             {
                 Console.WriteLine($"Status: {Status}");
