@@ -167,7 +167,7 @@ namespace LibraryTerminal
                     }
                     else
                     {
-                        if (itemsList[index].Status == ItemStatus.CheckedOut)
+                        if (itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
                         {
                             Console.WriteLine(Environment.NewLine + "You have checked in: ");
                             Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
