@@ -11,6 +11,7 @@ namespace LibraryTerminal
     {
         static void Main(string[] args)
         {
+            
             List<Item> itemsLoaded = new List<Item>();            
             StreamReader reader = new StreamReader("../../../SavedItems.txt");
             string line = reader.ReadLine();
@@ -27,13 +28,14 @@ namespace LibraryTerminal
 
             bool userContinue = true;
 
-            Console.WriteLine("Welcome to the Library!");
+            
+            Console.WriteLine("Welcome to the Library!"); //displays the main library menu
             while (userContinue)
             {
                 LibraryMenu();
                 string input = CnslFormatter.PromptForInput($"What would you like to do? ");
 
-                if(input == "1")
+                if(input == "1")  //prompts user to ask if they want to check out an item
                 {
                     L.PrintItems();
                     bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
@@ -42,9 +44,9 @@ namespace LibraryTerminal
                         L.Checkout(L.Catalog);
                     }
                 }
-                else if (input == "2")
+                else if (input == "2") //prompt for user to search by author name
                 {
-                    input = CnslFormatter.PromptForInput("Please enter name to search: ");
+                    input = CnslFormatter.PromptForInput("Please enter name to search: "); 
                     List<Item> resultsAuthor = L.SearchByAuthor(input);
 
                     if (resultsAuthor.Count == 0)
@@ -65,9 +67,9 @@ namespace LibraryTerminal
                         }
                     }
                 }
-                else if (input == "3")
+                else if (input == "3") //prompt for user to search by title
                 {
-                    input = CnslFormatter.PromptForInput("Please enter title to search: ");
+                    input = CnslFormatter.PromptForInput("Please enter title to search: "); 
                     List<Item> resultsTitle = L.SearchByTitle(input);
 
                     if (resultsTitle.Count == 0)
@@ -88,7 +90,7 @@ namespace LibraryTerminal
                         }
                     }
                 }
-                else if (input == "4")
+                else if (input == "4") //lists all items that has been checked out
                 {
                     List<Item> results = new List<Item>();
                     foreach (Item itemMatch in L.Catalog)
@@ -110,7 +112,7 @@ namespace LibraryTerminal
                     }
                 CnslFormatter.PauseByAnyKey();
                 }
-                else if (input == "5")
+                else if (input == "5")  //displays item list and asks if user want to check in an item
                 {
                     bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check in an item?");
                     if (proceed)
@@ -118,7 +120,7 @@ namespace LibraryTerminal
                         L.CheckIn(L.Catalog);
                     }
                 }
-                else if (input == "6")
+                else if (input == "6") //exits the program
                 {
                     userContinue = false;
                 }
@@ -143,7 +145,7 @@ namespace LibraryTerminal
 
             Console.WriteLine("Goodbye!");
         }
-        public static void LibraryMenu()
+        public static void LibraryMenu() //The "Main menu" prompt of the program. Asks for user input on what they want to do
         {
             Console.WriteLine($"\t1. Display items.");
             Console.WriteLine($"\t2. Search for a book by author.");
@@ -152,7 +154,7 @@ namespace LibraryTerminal
             Console.WriteLine($"\t5. Return a book.");
             Console.WriteLine($"\t6. Quit.");
         }
-        public static bool UserContinue(string message)
+        public static bool UserContinue(string message) //bool to either continue or exit the program 
         {
             Console.WriteLine(message);
             string proceed = Console.ReadLine().Trim().ToLower();
@@ -170,7 +172,7 @@ namespace LibraryTerminal
             else
                 return false;
         }
-        public static Item GenerateItem(string[] itemInfo)
+        public static Item GenerateItem(string[] itemInfo) //Pulls a line from the text file and turns into an item. Input
         {
             string itemType = itemInfo[0].ToLower();
             if (itemType.Equals("book"))
@@ -192,7 +194,7 @@ namespace LibraryTerminal
             return null;
         }
 
-        public static string GenerateEntry(Item item)
+        public static string GenerateEntry(Item item) //listing for library media in the .txt file. Type of media, title, author, release year, etc. Output
         {
             string itemEntry = "";
             string itemType = item.GetType().Name;
