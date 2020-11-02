@@ -62,5 +62,16 @@ namespace LibraryTerminal
                 Console.WriteLine(" ");
             }
         }
+        public static string MoreThanOne(List<Item> list)
+        {
+            if (list.Count > 1)
+            {
+                return $"Enter a number between 1 - {list.Count}";
+            }
+            else
+            {
+                return "Enter 1";
+            }
+        }
     }
 }

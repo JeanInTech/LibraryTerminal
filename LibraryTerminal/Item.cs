@@ -36,9 +36,26 @@ namespace LibraryTerminal
             Console.WriteLine($"\nTitle: {Title}");
             Console.WriteLine($"Author: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
+            CheckDueDate();
+        }
+        public void CheckDueDate()
+        {
             if (Status.Equals(ItemStatus.CheckedOut))
             {
-                Console.WriteLine($"Return Date: {DueDate:d}");
+                int result = DateTime.Compare(DueDate, DateTime.Now);
+                if (result <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Return Date: {DueDate:d}");
+                    Console.ResetColor();
+                    Status = ItemStatus.Overdue;
+                }
+                else if (result > 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Return Date: {DueDate:d}");
+                    Console.ResetColor();
+                }
             }
             else
             {

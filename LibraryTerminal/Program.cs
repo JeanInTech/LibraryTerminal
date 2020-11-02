@@ -11,8 +11,8 @@ namespace LibraryTerminal
     {
         static void Main(string[] args)
         {
-            
-            List<Item> itemsLoaded = new List<Item>();            
+
+            List<Item> itemsLoaded = new List<Item>();
             StreamReader reader = new StreamReader("../../../SavedItems.txt");
             string line = reader.ReadLine();
             while (line != null)
@@ -28,7 +28,7 @@ namespace LibraryTerminal
 
             bool userContinue = true;
 
-            
+
             Console.WriteLine("Welcome to the Library!"); //displays the main library menu
             while (userContinue)
             {
@@ -36,18 +36,18 @@ namespace LibraryTerminal
                 LibraryMenu();
                 string input = CnslFormatter.PromptForInput($"What would you like to do? ");
 
-                if(input == "1")  //prompts user to ask if they want to check out an item
+                if (input == "1")  //prompts user to ask if they want to check out an item
                 {
                     L.PrintItems();
                     bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
-                    if(proceed)
+                    if (proceed)
                     {
                         L.Checkout(L.Catalog);
                     }
                 }
                 else if (input == "2") //prompt for user to search by author name
                 {
-                    input = CnslFormatter.PromptForInput("Please enter name to search: "); 
+                    input = CnslFormatter.PromptForInput("Please enter name to search: ");
                     List<Item> resultsAuthor = L.SearchByAuthor(input);
 
                     if (resultsAuthor.Count == 0)
@@ -70,7 +70,7 @@ namespace LibraryTerminal
                 }
                 else if (input == "3") //prompt for user to search by title
                 {
-                    input = CnslFormatter.PromptForInput("Please enter title to search: "); 
+                    input = CnslFormatter.PromptForInput("Please enter title to search: ");
                     List<Item> resultsTitle = L.SearchByTitle(input);
 
                     if (resultsTitle.Count == 0)
@@ -96,7 +96,7 @@ namespace LibraryTerminal
                     List<Item> results = new List<Item>();
                     foreach (Item itemMatch in L.Catalog)
                     {
-                        if (itemMatch.Status == ItemStatus.CheckedOut)
+                        if (itemMatch.Status == ItemStatus.CheckedOut || itemMatch.Status == ItemStatus.Overdue)
                         {
                             results.Add(itemMatch);
                         }
@@ -130,7 +130,7 @@ namespace LibraryTerminal
                 }
             }
             Console.WriteLine("Saving Library Content!");
-            
+
             File.WriteAllText("../../../SavedItems.txt", string.Empty); // Clear the File
             StreamWriter writer = new StreamWriter("../../../SavedItems.txt"); // Should generate new file if deleted
             List<Item> itemsSaved = L.Catalog;
