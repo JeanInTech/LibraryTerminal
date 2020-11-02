@@ -180,7 +180,7 @@ namespace LibraryTerminal
             }
             else if (itemType.Equals("cd"))
             {
-                return new CD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), itemInfo[6]);
+                return new CD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             else if (itemType.Equals("dvd"))
             {
