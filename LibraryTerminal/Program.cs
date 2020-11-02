@@ -32,6 +32,7 @@ namespace LibraryTerminal
             Console.WriteLine("Welcome to the Library!"); //displays the main library menu
             while (userContinue)
             {
+                Console.WriteLine("Main Menu:");
                 LibraryMenu();
                 string input = CnslFormatter.PromptForInput($"What would you like to do? ");
 
@@ -114,7 +115,11 @@ namespace LibraryTerminal
                         L.CheckIn(results);
                     }
                 }
-                else if (input == "5")  //displays item list and asks if user want to check in an item
+                else if (input == "5")  //Brings up a series of prompts for the user to create new items
+                {
+                    L.AddNewItem();
+                }
+                else if (input == "6")  //displays item list and asks if user want to check in an item
                 {
                     userContinue = false;
                 }
@@ -145,7 +150,8 @@ namespace LibraryTerminal
             Console.WriteLine($"\t2. Search for a book by author.");
             Console.WriteLine($"\t3. Search for a book by title.");
             Console.WriteLine($"\t4. Return/Show checked out items.");
-            Console.WriteLine($"\t5. Quit.");
+            Console.WriteLine($"\t5. Add new item.");
+            Console.WriteLine($"\t6. Quit.");
         }
         public static bool UserContinue(string message) //bool to either continue or exit the program 
         {
