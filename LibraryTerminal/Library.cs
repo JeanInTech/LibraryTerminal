@@ -98,28 +98,23 @@ namespace LibraryTerminal
         // If it is already checked out, the console states that the item is not available.
         public void Checkout(List<Item> itemsList)
         {
-            // Display current list's contents for index input reference.
             Console.Clear();
             for (int i = 0; i < itemsList.Count; i++)
             {
                 Console.Write($"{Environment.NewLine}Item {i + 1}.");
                 itemsList[i].PrintInfo();
             }
-
-            // Prompt user for selection within the range of available items.
             string input = CnslFormatter.PromptForInput($"Please select the item you would like to checkout. [Enter 1 - {itemsList.Count}]: ");
             if (Int32.TryParse(input, out int num))
             {
                 int index = num - 1;
 
-                // Check if the input integer is considered in bounds
                 if (index < 0 || index >= itemsList.Count)
                 {
                     Console.WriteLine($"Input out of range, please enter a value between 1 and {itemsList.Count}! Returning to Menu!");
                 }
                 else
                 {
-                    // Find matching item and change its properties to have it represented as checked out.
                     if (itemsList[index].Status == ItemStatus.OnShelf)
                     {
                         Console.WriteLine(Environment.NewLine + "You have checked out: ");
@@ -151,51 +146,47 @@ namespace LibraryTerminal
         // If it is already checked in, the console states that the item is already checked in.
         public void CheckIn(List<Item> itemsList)
         {
-            // Display current list's contents for index input reference.
-            Console.Clear();
-            for (int i = 0; i < itemsList.Count; i++)
-            {
-                Console.Write($"{Environment.NewLine}Item {i + 1}.");
-                itemsList[i].PrintInfo();
-            }
+            bool proceed = CnslFormatter.AskYesOrNo($"Would you like to return an item? ");
 
-            // Prompt user for selection within the range of available items.
-            string input = CnslFormatter.PromptForInput($"Please select the item you would like to check in. [Enter 1 - {itemsList.Count}]: ");
-            if (Int32.TryParse(input, out int num))
+            while(proceed)
             {
-                int index = num - 1;
-
-                // Check if the input integer is considered in bounds
-                if (index < 0 || index >= itemsList.Count)
+                Console.Clear();
+                for (int i = 0; i < itemsList.Count; i++)
                 {
-                    Console.WriteLine($"Input out of range, please enter a value between 1 and {itemsList.Count}! Returning to Menu!");
+                    Console.Write($"{Environment.NewLine}Item {i + 1}.");
+                    itemsList[i].PrintInfo();
                 }
-                else
+                string input = CnslFormatter.PromptForInput($"Please select the item you would like to return? [Enter 1 - {itemsList.Count}]: ");
+                if (Int32.TryParse(input, out int num))
                 {
-                    // Find matching item and change its properties to have it represented as checked in.
-                    if (itemsList[index].Status == ItemStatus.CheckedOut)
+                    int index = num - 1;
+
+                    if (index < 0 || index >= itemsList.Count)
                     {
-                        Console.WriteLine(Environment.NewLine + "You have checked in: ");
-                        Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
-                        itemsList[index].Status = ItemStatus.OnShelf;
-                        CnslFormatter.PauseByAnyKey();
-                    }
-                    else if (itemsList[index].Status == ItemStatus.OnShelf)
-                    {
-                        Console.WriteLine("Item is already checked in. Cannot complete checkout at this time.");
+                        Console.WriteLine($"Input out of range, please enter a value between 1 and {itemsList.Count}.");
                     }
                     else
                     {
-                        Console.WriteLine("Cannot complete checkout at this time.");
+                        if (itemsList[index].Status == ItemStatus.CheckedOut)
+                        {
+                            Console.WriteLine(Environment.NewLine + "You have checked in: ");
+                            Console.WriteLine($"   {itemsList[index].Title} by {itemsList[index].Author}");
+                            itemsList[index].Status = ItemStatus.OnShelf;
+                            CnslFormatter.PauseByAnyKey();
+                            proceed = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Cannot complete checkout at this time.");
+                        }
                     }
                 }
-            }
-            else
-            {
-                Console.WriteLine("Non-Integer input detected. Please enter an integer next time. Returning to Menu!");
+                else
+                {
+                    Console.WriteLine("Non-Integer input detected. Please enter an integer.");
+                }
             }
         }
-
         // Prompts User for multiple inputs that will serve as the info for a new Item.
         // The new Item will then be placed into the Catalog
         public void AddNewItem()

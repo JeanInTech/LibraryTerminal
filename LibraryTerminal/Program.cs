@@ -104,21 +104,15 @@ namespace LibraryTerminal
                         CnslFormatter.PauseByAnyKey();
                     }
                     else if (results.Count >= 1)
-                    foreach (Item result in results)
                     {
-                        result.PrintInfo();
+                        foreach (Item result in results)
+                        {
+                            result.PrintInfo();
+                        }
+                        L.CheckIn(results);
                     }
-                CnslFormatter.PauseByAnyKey();
                 }
                 else if (input == "5")
-                {
-                    bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check in an item?");
-                    if (proceed)
-                    {
-                        L.CheckIn(L.Catalog);
-                    }
-                }
-                else if (input == "6")
                 {
                     userContinue = false;
                 }
@@ -148,9 +142,8 @@ namespace LibraryTerminal
             Console.WriteLine($"\t1. Display items.");
             Console.WriteLine($"\t2. Search for a book by author.");
             Console.WriteLine($"\t3. Search for a book by title.");
-            Console.WriteLine($"\t4. Show items you have checked out.");
-            Console.WriteLine($"\t5. Return a book.");
-            Console.WriteLine($"\t6. Quit.");
+            Console.WriteLine($"\t4. Return/Show checked out items.");
+            Console.WriteLine($"\t5. Quit.");
         }
         public static bool UserContinue(string message)
         {
