@@ -29,7 +29,7 @@ namespace LibraryTerminal
             bool userContinue = true;
 
 
-            Console.WriteLine("Welcome to the Library!"); //displays the main library menu
+            Console.WriteLine("Welcome to the Library!");
             while (userContinue)
             {
                 Console.WriteLine("Main Menu:");
