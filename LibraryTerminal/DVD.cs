@@ -19,7 +19,7 @@ namespace LibraryTerminal
         }
         public override void PrintInfo()
         {
-            Console.WriteLine($"\nTitle: {Title}");
+            Console.WriteLine($"Title: {Title}");
             Console.WriteLine($"Director: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             Console.WriteLine($"RunTime: {RunTime} minutes");

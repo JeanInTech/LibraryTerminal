@@ -101,8 +101,9 @@ namespace LibraryTerminal
             Console.Clear();
             for (int i = 0; i < itemsList.Count; i++)
             {
-                Console.Write($"{Environment.NewLine}Item {i + 1}.");
+                Console.Write($"Item {i + 1}. ");
                 itemsList[i].PrintInfo();
+                Console.WriteLine();
             }
             string input = CnslFormatter.PromptForInput($"Please select the item you would like to checkout. [{CnslFormatter.MoreThanOne(itemsList)}]: ");
             if (Int32.TryParse(input, out int num))
@@ -127,17 +128,19 @@ namespace LibraryTerminal
                     }
                     else if (itemsList[index].Status == ItemStatus.CheckedOut || itemsList[index].Status == ItemStatus.Overdue)
                     {
-                        Console.WriteLine("Item is already checked out. Cannot complete checkout at this time.");
+                        Console.WriteLine("\nItem is already checked out. Cannot complete checkout at this time.");
+                        CnslFormatter.PauseByAnyKey();
                     }
                     else
                     {
-                        Console.WriteLine("Cannot complete checkout at this time.");
+                        Console.WriteLine("\nCannot complete checkout at this time.");
+                        CnslFormatter.PauseByAnyKey();
                     }
                 }
             }
             else
             {
-                Console.WriteLine("Non-Integer input detected. Please enter an integer next time.");
+                Console.WriteLine("\nNon-Integer input detected. Please enter an integer next time.");
             }
         }
 
@@ -153,8 +156,9 @@ namespace LibraryTerminal
                 Console.Clear();
                 for (int i = 0; i < itemsList.Count; i++)
                 {
-                    Console.Write($"{Environment.NewLine}Item {i + 1}.");
+                    Console.Write($"Item {i + 1}. ");
                     itemsList[i].PrintInfo();
+                    Console.WriteLine();
                 }
                 string input = CnslFormatter.PromptForInput($"Please select the item you would like to return? [{CnslFormatter.MoreThanOne(itemsList)}]: ");
                 if (Int32.TryParse(input, out int num))
@@ -177,6 +181,7 @@ namespace LibraryTerminal
                         else
                         {
                             Console.WriteLine("Cannot complete checkout at this time.");
+                            CnslFormatter.PauseByAnyKey();
                         }
                     }
                 }
@@ -206,12 +211,13 @@ namespace LibraryTerminal
             // Will repeat until a valid string value is given.
             while (true)
             {
-                string newType = CnslFormatter.PromptForInput("Please enter the Type of the new Item: [book,cd,dvd,magazine]");
+                string newType = CnslFormatter.PromptForInput("Please enter the Type of the new Item [book, cd, dvd, magazine]: ");
                 if (newType.ToLower().Equals("book"))
                 {
                     Item newBook = MakeNewBook(newTitle, newAuthor, newYear);
                     Catalog.Add(newBook);
                     Console.WriteLine("New Book Added to Catalog!");
+                    CnslFormatter.PauseByAnyKey();
                     break;
                 }
                 else if (newType.ToLower().Equals("cd"))
@@ -219,6 +225,7 @@ namespace LibraryTerminal
                     Item newCD = MakeNewCD(newTitle, newAuthor, newYear);
                     Catalog.Add(newCD);
                     Console.WriteLine("New CD Added to Catalog!");
+                    CnslFormatter.PauseByAnyKey();
                     break;
                 }
                 else if (newType.ToLower().Equals("dvd"))
@@ -226,6 +233,7 @@ namespace LibraryTerminal
                     Item newDVD = MakeNewDVD(newTitle, newAuthor, newYear);
                     Catalog.Add(newDVD);
                     Console.WriteLine("New DVD Added to Catalog!");
+                    CnslFormatter.PauseByAnyKey();
                     break;
                 }
                 else if (newType.ToLower().Equals("magazine"))
@@ -233,6 +241,7 @@ namespace LibraryTerminal
                     Item newMagazine = MakeNewMagazine(newTitle, newAuthor, newYear);
                     Catalog.Add(newMagazine);
                     Console.WriteLine("New Magazine Added to Catalog!");
+                    CnslFormatter.PauseByAnyKey();
                     break;
                 }
             }
