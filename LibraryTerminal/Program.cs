@@ -32,9 +32,9 @@ namespace LibraryTerminal
             Console.WriteLine("Welcome to the Library!");
             while (userContinue)
             {
-                Console.WriteLine("Main Menu:");
                 LibraryMenu();
-                string input = CnslFormatter.PromptForInput($"What would you like to do? ");
+                string input = CnslFormatter.PromptForInput($"\nWhat would you like to do? ");
+                Console.WriteLine();
 
                 if (input == "1")  //prompts user to ask if they want to check out an item
                 {
@@ -44,6 +44,8 @@ namespace LibraryTerminal
                     {
                         L.Checkout(L.Catalog);
                     }
+                    else
+                        Console.Clear();
                 }
                 else if (input == "2") //prompt for user to search by author name
                 {
@@ -52,20 +54,23 @@ namespace LibraryTerminal
 
                     if (resultsAuthor.Count == 0)
                     {
-                        Console.WriteLine("No items found.");
+                        Console.WriteLine("\nNo items found.");
                         CnslFormatter.PauseByAnyKey();
                     }
                     else if (resultsAuthor.Count >= 1)
                     {
+                        Console.WriteLine();
                         foreach (Item result in resultsAuthor)
                         {
                             result.PrintInfo();
                         }
-                        bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
+                        bool proceed = CnslFormatter.AskYesOrNo($"\nWould you like to check out an item?");
                         if (proceed)
                         {
                             L.Checkout(resultsAuthor);
                         }
+                        else
+                            Console.Clear();
                     }
                 }
                 else if (input == "3") //prompt for user to search by title
@@ -75,7 +80,7 @@ namespace LibraryTerminal
 
                     if (resultsTitle.Count == 0)
                     {
-                        Console.WriteLine("No items found.");
+                        Console.WriteLine("\nNo items found.");
                         CnslFormatter.PauseByAnyKey();
                     }
                     else if (resultsTitle.Count >= 1)
@@ -84,15 +89,19 @@ namespace LibraryTerminal
                         {
                             result.PrintInfo();
                         }
-                        bool proceed = CnslFormatter.AskYesOrNo($"Would you like to check out an item?");
+                        bool proceed = CnslFormatter.AskYesOrNo($"\nWould you like to check out an item?");
                         if (proceed)
                         {
                             L.Checkout(resultsTitle);
                         }
+                        else
+                            Console.Clear();
                     }
                 }
                 else if (input == "4") //lists all items that has been checked out
                 {
+                    Console.Clear();
+                    Console.WriteLine("Items Currently Checked Out:\n");
                     List<Item> results = new List<Item>();
                     foreach (Item itemMatch in L.Catalog)
                     {
@@ -111,6 +120,7 @@ namespace LibraryTerminal
                         foreach (Item result in results)
                         {
                             result.PrintInfo();
+                            Console.WriteLine();
                         }
                         L.CheckIn(results);
                     }
@@ -146,12 +156,14 @@ namespace LibraryTerminal
         }
         public static void LibraryMenu() //The "Main menu" prompt of the program. Asks for user input on what they want to do
         {
-            Console.WriteLine($"\t1. Display items.");
+            Console.WriteLine("==================================================");
+            Console.WriteLine($"\t1. Display all items.");
             Console.WriteLine($"\t2. Search for a book by author.");
             Console.WriteLine($"\t3. Search for a book by title.");
             Console.WriteLine($"\t4. Return/Show checked out items.");
             Console.WriteLine($"\t5. Add new item.");
             Console.WriteLine($"\t6. Quit.");
+            Console.WriteLine("==================================================");
         }
         public static bool UserContinue(string message) //bool to either continue or exit the program 
         {
@@ -180,7 +192,7 @@ namespace LibraryTerminal
             }
             else if (itemType.Equals("cd"))
             {
-                return new CD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), itemInfo[6]);
+                return new CD(itemInfo[1], itemInfo[2], (ItemStatus)Enum.Parse(typeof(ItemStatus), itemInfo[3], true), DateTime.Parse(itemInfo[4]), int.Parse(itemInfo[5]), int.Parse(itemInfo[6]));
             }
             else if (itemType.Equals("dvd"))
             {

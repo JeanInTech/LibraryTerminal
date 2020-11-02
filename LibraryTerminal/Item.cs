@@ -33,7 +33,7 @@ namespace LibraryTerminal
 
         public virtual void PrintInfo()
         {
-            Console.WriteLine($"\nTitle: {Title}");
+            Console.WriteLine($"Title: {Title}");
             Console.WriteLine($"Author: {Author}");
             Console.WriteLine($"Year Released: {ReleaseYear}");
             CheckDueDate();

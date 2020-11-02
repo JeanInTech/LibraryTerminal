@@ -20,7 +20,7 @@ namespace LibraryTerminal
         }
         public override void PrintInfo()
         {
-            Console.WriteLine($"\nTitle: {Title}");
+            Console.WriteLine($"Title: {Title}");
             Console.WriteLine($"Publisher: {Author}");
             Console.WriteLine($"Issue: {PublishMonth}/{ReleaseYear}");
             CheckDueDate();
